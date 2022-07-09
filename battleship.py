@@ -10,17 +10,15 @@ class Board:
     def __repr__(self):
         return "This is the game board, it contains modules for producing vertical and horizontal pieces, as well as the game board itself!"
     
+    def display_board(self):
+        pass
+
     def create_ships(self):
         self.destroyer = random.randint(1, 2)
-        print(self.destroyer)
         self.submarine = random.randint(1, 2)
-        print(self.submarine)
         self.cruiser = random.randint(1, 2)
-        print(self.cruiser)
         self.battleship = random.randint(1, 2)
-        print(self.battleship)
         self.carrier = random.randint(1, 2)
-        print(self.carrier)
 
         if self.destroyer == 1:
             Board.get_vertical(self, 2)
@@ -182,10 +180,10 @@ class Board:
             self.stored_hor_nums.append(stored_hor_nums)
             return
 
-
 board_1 = Board()
 
 board_1.create_ships()
 
 print(board_1.stored_hor_nums)
 print(board_1.stored_vert_nums)
+print("\n   A B C D E F G H I J\n 1 0 0 0 0 0 0 0 0 0 0\n 2 0 0 0 0 0 0 0 0 0 0\n 3 0 0 0 0 0 0 0 0 0 0\n 4 0 0 0 0 0 0 0 0 0 0\n 5 0 0 0 0 0 0 0 0 0 0\n 6 0 0 0 0 0 0 0 0 0 0\n 7 0 0 0 0 0 0 0 0 0 0\n 8 0 0 0 0 0 0 0 0 0 0\n 9 0 0 0 0 0 0 0 0 0 0\n10 0 0 0 0 0 0 0 0 0 0\n")
