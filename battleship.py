@@ -4,10 +4,20 @@ class Board:
     def __init__(self):
         self.spaces = [*range(1,101)]
         self.board_spaces = [[' '] * 10 for x in range(10)]
-        self.stored_vert_nums = []
-        self.stored_hor_nums = []
+        self.correct_coordinates = []
         self.letters_to_numbers = {"A":1, "B":2, "C":3, "D":4, "E":5, "F":6, "G":7, "H":8, "I":9, "J":10}
-        
+        i = 1
+        while i < 2:
+            self.get_horizontal
+            self.get_vertical
+            self.check_for_dups()
+    
+    def check_for_dups(self):
+        if len(self.correct_coordinates) != len(set(self.correct_coordinates)):
+            i += 1
+        else:
+            self.correct_coordinates = []
+
     def print_board(board):
         row_num = 1
         print("   A B C D E F G H I J")
@@ -37,11 +47,11 @@ class Board:
         self.detect_hit()
         
     def detect_hit(self):
-        for each in self.stored_hor_nums:
+        for each in self.correct_coordinates:
             for i in each:
                 if self.coordinate == i:
                     print("Hit!")
-        for each in self.stored_vert_nums:
+        for each in self.correct_coordinates:
             for i in each:
                 if self.coordinate == i:
                     print("Hit!!!")
@@ -52,23 +62,26 @@ class Board:
         self.cruiser = random.randint(1, 2)
         self.battleship = random.randint(1, 2)
         self.carrier = random.randint(1, 2)
-
         if self.destroyer == 1:
             Board.get_vertical(self, 2)
         else:
             Board.get_horizontal(self, 2)
+        
         if self.submarine == 1:
             Board.get_vertical(self, 3)
         else:
             Board.get_horizontal(self, 3)
+        
         if self.cruiser == 1:
             Board.get_vertical(self, 3)
         else:
             Board.get_horizontal(self, 3)
+        
         if self.battleship == 1:
             Board.get_vertical(self, 4)
         else:
             Board.get_horizontal(self, 4)
+        
         if self.carrier == 1:
             Board.get_vertical(self, 5)
         else:
@@ -76,148 +89,146 @@ class Board:
         
     def get_vertical(self, size):
         num = random.randint(1, 100)
-        stored_vert_nums = []
-        stored_vert_nums.append(num)
+        correct_coordinates = []
+        correct_coordinates.append(num)
         if num >= 60:
-            stored_vert_nums.append(num-10)
+            correct_coordinates.append(num-10)
             if size == 2:
-                self.stored_vert_nums.append(stored_vert_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return
-            stored_vert_nums.append(num-20)
+            correct_coordinates.append(num-20)
             if size == 3:
-                self.stored_vert_nums.append(stored_vert_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return
-            stored_vert_nums.append(num-30)
+            correct_coordinates.append(num-30)
             if size == 4:
-                self.stored_vert_nums.append(stored_vert_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return
-            stored_vert_nums.append(num-40)
-            self.stored_vert_nums.append(stored_vert_nums)
+            correct_coordinates.append(num-40)
+            self.correct_coordinates.append(correct_coordinates)
             return  
         else:
-            stored_vert_nums.append(num+10)
+            correct_coordinates.append(num+10)
             if size == 2:
-                self.stored_vert_nums.append(stored_vert_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return
-            stored_vert_nums.append(num+20)
+            correct_coordinates.append(num+20)
             if size == 3:
-                self.stored_vert_nums.append(stored_vert_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return
-            stored_vert_nums.append(num+30)
+            correct_coordinates.append(num+30)
             if size == 4:
-                self.stored_vert_nums.append(stored_vert_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return
             else:
-                stored_vert_nums.append(num+40)
-                self.stored_vert_nums.append(stored_vert_nums)
+                correct_coordinates.append(num+40)
+                self.correct_coordinates.append(correct_coordinates)
                 return
 
     def get_horizontal(self, size):
         num = random.randint(1, 100)
-        stored_hor_nums = []
-        stored_hor_nums.append(num)
+        correct_coordinates = []
+        correct_coordinates.append(num)
         if (num % 10 == 0):
-            stored_hor_nums.append(num-1)
+            correct_coordinates.append(num-1)
             if size == 2:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return 
-            stored_hor_nums.append(num-2)
+            correct_coordinates.append(num-2)
             if size == 3:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return 
-            stored_hor_nums.append(num-3)
+            correct_coordinates.append(num-3)
             if size == 4:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return
-            stored_hor_nums.append(num-4)
-            self.stored_hor_nums.append(stored_hor_nums)
+            correct_coordinates.append(num-4)
+            self.correct_coordinates.append(correct_coordinates)
             return
         elif (num % 10 == 9):
-            stored_hor_nums.append(num-1)
+            correct_coordinates.append(num-1)
             if size == 2:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return 
-            stored_hor_nums.append(num-2)
+            correct_coordinates.append(num-2)
             if size == 3:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return 
-            stored_hor_nums.append(num-3)
+            correct_coordinates.append(num-3)
             if size == 4:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return
-            stored_hor_nums.append(num-4)
-            self.stored_hor_nums.append(stored_hor_nums)
+            correct_coordinates.append(num-4)
+            self.correct_coordinates.append(correct_coordinates)
             return
         elif (num % 10 == 8):
-            stored_hor_nums.append(num-1)
+            correct_coordinates.append(num-1)
             if size == 2:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return 
-            stored_hor_nums.append(num-2)
+            correct_coordinates.append(num-2)
             if size == 3:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return 
-            stored_hor_nums.append(num-3)
+            correct_coordinates.append(num-3)
             if size == 4:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return
-            stored_hor_nums.append(num-4)
-            self.stored_hor_nums.append(stored_hor_nums)
+            correct_coordinates.append(num-4)
+            self.correct_coordinates.append(correct_coordinates)
             return
         elif (num % 10 == 7):
-            stored_hor_nums.append(num-1)
+            correct_coordinates.append(num-1)
             if size == 2:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return 
-            stored_hor_nums.append(num-2)
+            correct_coordinates.append(num-2)
             if size == 3:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return 
-            stored_hor_nums.append(num-3)
+            correct_coordinates.append(num-3)
             if size == 4:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return
-            stored_hor_nums.append(num-4)
-            self.stored_hor_nums.append(stored_hor_nums)
+            correct_coordinates.append(num-4)
+            self.correct_coordinates.append(correct_coordinates)
             return
         elif (num % 10 == 6):
-            stored_hor_nums.append(num-1)
+            correct_coordinates.append(num-1)
             if size == 2:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return 
-            stored_hor_nums.append(num-2)
+            correct_coordinates.append(num-2)
             if size == 3:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return 
-            stored_hor_nums.append(num-3)
+            correct_coordinates.append(num-3)
             if size == 4:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return
-            stored_hor_nums.append(num-4)
-            self.stored_hor_nums.append(stored_hor_nums)
+            correct_coordinates.append(num-4)
+            self.correct_coordinates.append(correct_coordinates)
             return
         else:
-            stored_hor_nums.append(num+1)
+            correct_coordinates.append(num+1)
             if size == 2:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return 
-            stored_hor_nums.append(num+2)
+            correct_coordinates.append(num+2)
             if size == 3:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return 
-            stored_hor_nums.append(num+3)
+            correct_coordinates.append(num+3)
             if size == 4:
-                self.stored_hor_nums.append(stored_hor_nums)
+                self.correct_coordinates.append(correct_coordinates)
                 return
-            stored_hor_nums.append(num+4)
-            self.stored_hor_nums.append(stored_hor_nums)
+            correct_coordinates.append(num+4)
+            self.correct_coordinates.append(correct_coordinates)
             return
 
 board_1 = Board()
 
 board_1.create_ships()
-
-print(board_1.stored_hor_nums)
-print(board_1.stored_vert_nums)
+print(board_1.correct_coordinates)
 board_1.print_board()
 board_1.get_ship_location()
