@@ -3,15 +3,48 @@ import random
 class Board:
     def __init__(self):
         self.spaces = [*range(1,101)]
-        self.board_spaces = {}
+        self.board_spaces = [[' '] * 10 for x in range(10)]
         self.stored_vert_nums = []
         self.stored_hor_nums = []
-    
+        self.letters_to_numbers = {"A":1, "B":2, "C":3, "D":4, "E":5, "F":6, "G":7, "H":8, "I":9, "J":10}
+        
+    def print_board(board):
+        row_num = 1
+        print("   A B C D E F G H I J")
+        while row_num < 10:
+            print(str(row_num) + " " + "|_|_|_|_|_|_|_|_|_|_|")
+            row_num += 1
+        print(str(10) + "|_|_|_|_|_|_|_|_|_|_|")
+        
+
     def __repr__(self):
         return "This is the game board, it contains modules for producing vertical and horizontal pieces, as well as the game board itself!"
     
     def display_board(self):
         pass
+
+    def get_ship_location(self,):
+        row = input("Please enter a row 1-10 ")
+        while row not in "123456789 10":
+            print("Please enter a valid row ")
+            row = input("Please enter a row 1-10 ")
+        column = input("Please enter a column A-J ").upper()
+        while column not in "ABCDEFGHIJ":
+            print("Please enter a valid column ")
+            column = input("Please enter a column A-J ").upper()
+        self.coordinate = (int(row)-1)*10 + int(self.letters_to_numbers[column])
+        print(self.coordinate)
+        self.detect_hit()
+        
+    def detect_hit(self):
+        for each in self.stored_hor_nums:
+            for i in each:
+                if self.coordinate == i:
+                    print("Hit!")
+        for each in self.stored_vert_nums:
+            for i in each:
+                if self.coordinate == i:
+                    print("Hit!!!")
 
     def create_ships(self):
         self.destroyer = random.randint(1, 2)
@@ -186,4 +219,5 @@ board_1.create_ships()
 
 print(board_1.stored_hor_nums)
 print(board_1.stored_vert_nums)
-print("\n    A B C D E F G H I J\n 1  0 0 0 0 0 0 0 0 0 0\n 2  0 0 0 0 0 0 0 0 0 0\n 3  0 0 0 0 0 0 0 0 0 0\n 4  0 0 0 0 0 0 0 0 0 0\n 5  0 0 0 0 0 0 0 0 0 0\n 6  0 0 0 0 0 0 0 0 0 0\n 7  0 0 0 0 0 0 0 0 0 0\n 8  0 0 0 0 0 0 0 0 0 0\n 9  0 0 0 0 0 0 0 0 0 0\n10  0 0 0 0 0 0 0 0 0 0\n")
+board_1.print_board()
+board_1.get_ship_location()
