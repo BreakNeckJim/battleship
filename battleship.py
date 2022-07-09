@@ -12,16 +12,21 @@ class Board:
         num = random.randint(1, 100)
         print(num)
         stored_vert_nums = []
+        print(stored_vert_nums)
         stored_vert_nums.append(num)
         if (num+10) < 100:
             stored_vert_nums.append(num+10)
+            print(stored_vert_nums)
         else:
             stored_vert_nums.append(num-10)
+            print(stored_vert_nums)
         if (num+20) < 100:
             stored_vert_nums.append(num+20)
+            print(stored_vert_nums)
         else:
             stored_vert_nums.append(num-20)
-        return stored_vert_nums
+            print(stored_vert_nums)
+        self.stored_vert_nums = stored_vert_nums
 board_1 = Board()
 board_1.get_vertical()
 print(board_1.stored_vert_nums)
