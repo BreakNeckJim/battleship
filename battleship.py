@@ -5,16 +5,11 @@ class Board:
         self.spaces = [*range(1,101)]
         self.correct_coordinates = []
         self.letters_to_numbers = {"A":1, "B":2, "C":3, "D":4, "E":5, "F":6, "G":7, "H":8, "I":9, "J":10}
-        i = 1
-        while i < 10:
-            self.create_ships
-            if len(self.correct_coordinates) != len(set(self.correct_coordinates)):
-                self.correct_coordinates = []
-                print(self.correct_coordinates)
-            else:
-                i += 1
-                print(i)
-            
+        self.create_ships       
+        print(self.correct_coordinates)
+        self.print_board()
+        self.get_ship_location()
+
     def print_board(board):
         row_num = 1
         print("   A B C D E F G H I J")
@@ -23,14 +18,10 @@ class Board:
             row_num += 1
         print(str(10) + "|_|_|_|_|_|_|_|_|_|_|")
         
-
     def __repr__(self):
         return "This is the game board, it contains modules for producing vertical and horizontal pieces, as well as the game board itself!"
-    
-    def display_board(self):
-        pass
 
-    def get_ship_location(self,):
+    def get_ship_location(self):
         row = input("Please enter a row 1-10 ")
         while row not in "123456789 10":
             print("Please enter a valid row ")
@@ -218,12 +209,17 @@ class Board:
             self.correct_coordinates += correct_coordinates
             return
 
-board_1 = Board()
-
-board_1.create_ships()
-print(board_1.correct_coordinates)
-print(set(board_1.correct_coordinates))
-board_1.print_board()
-board_1.get_ship_location()
-print(board_1.correct_coordinates)
-print(set(board_1.correct_coordinates))
+board = Board()
+i = 1
+while i < 2:
+    board.create_ships()
+    if len(board.correct_coordinates) != len(set(board.correct_coordinates)):
+        print(board.correct_coordinates)
+        print(set(board.correct_coordinates))
+        board.correct_coordinates = []
+        print(len(board.correct_coordinates))
+        i -= 1
+    else:
+        i += 1
+        print(i)
+print(board.correct_coordinates)
