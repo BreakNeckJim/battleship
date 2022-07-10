@@ -6,16 +6,15 @@ class Board:
         self.correct_coordinates = []
         self.letters_to_numbers = {"A":1, "B":2, "C":3, "D":4, "E":5, "F":6, "G":7, "H":8, "I":9, "J":10}
         i = 1
-        while i < 2:
+        while i < 10:
             self.create_ships
             if len(self.correct_coordinates) != len(set(self.correct_coordinates)):
                 self.correct_coordinates = []
                 print(self.correct_coordinates)
-            elif len(self.correct_coordinates) == len(set(self.correct_coordinates)):
+            else:
                 i += 1
-                print("Hello!~")
-                
-
+                print(i)
+            
     def print_board(board):
         row_num = 1
         print("   A B C D E F G H I J")
