@@ -6,6 +6,7 @@ ship_coordinates = []
 correct_guesses = []
 coordinate = 0
 letters_to_numbers = {"A":0, "B":1, "C":2, "D":3, "E":4, "F":5, "G":6, "H":7, "I":8, "J":9}
+turns = 20
 
 def get_ship_location():
     global turns
@@ -20,21 +21,18 @@ def get_ship_location():
     coordinate = (int(row)-1)*10 + int(letters_to_numbers[column]+1)
     row = int(row) - 1
     print(coordinate)
-    for each in ship_coordinates:
-        if coordinate == each:
-            board[int(row)][int(letters_to_numbers[column])] = "X"
-            print(ship_coordinates)
-            correct_guesses.append(each)
-            ship_coordinates.pop(ship_coordinates.index(each))
-            print(ship_coordinates)
-            print(correct_guesses)
-            print("Hit!")
-            break
-        else:
-            board[int(row)][int(letters_to_numbers[column])] = "/"
-            print("Sorry, guess again!")
-            turns -= 1
-
+    if coordinate in ship_coordinates:
+        board[int(row)][int(letters_to_numbers[column])] = "X"
+        print(ship_coordinates)
+        correct_guesses.append(coordinate)
+        ship_coordinates.pop(ship_coordinates.index(coordinate))
+        print(ship_coordinates)
+        print(correct_guesses)
+        print("Hit!")
+    else:
+        board[int(row)][int(letters_to_numbers[column])] = "/"
+        print("Sorry, guess again!")
+        turns -= 1
 
 def create_ships():
     destroyer = random.randint(1, 2)
@@ -151,12 +149,21 @@ def print_board(board):
     print("  A B C D E F G H I J")
     x = 1
     for i in board:
-        print(str(x) + " " + " ".join(i))
+        print("  " + " ".join(i) + " " + str(x))
         x += 1
+
 create_ships()
-turns = 20
-print(turns)
-while turns > 0:
+
+print("Hello and welcome to battleship!\n")
+print("You have " + str(turns) + " turns left\n")
+
+while turns > 0 and len(correct_guesses) < 17:
     print_board(board)
     get_ship_location()
-    print(turns)
+    print("You have " + str(turns) + " turns left\n")
+
+if turns == 0:
+    print("Sorry, you've run out of turns!\nThanks for playing!")
+
+if len(correct_guesses) == 17:
+    print("Congratulations!!! You've sunk all the ships!\nYou win!")
