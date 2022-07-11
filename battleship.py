@@ -10,29 +10,27 @@ turns = 20
 
 def get_ship_location():
     global turns
-    row = input("Please enter a row 1-10 ")
+    row = input("\nPlease enter a row 1-10 ")
     while row not in "123456789 10":
-        print("Please enter a valid row ")
-        row = input("Please enter a row 1-10 ")
-    column = input("Please enter a column A-J ").upper()
+        print("\nPlease enter a valid row ")
+        row = input("\nPlease enter a row 1-10 ")
+    column = input("\nPlease enter a column A-J ").upper()
     while column not in "ABCDEFGHIJ":
-        print("Please enter a valid column ")
-        column = input("Please enter a column A-J ").upper()
+        print("\nPlease enter a valid column ")
+        column = input("\nPlease enter a column A-J ").upper()
     coordinate = (int(row)-1)*10 + int(letters_to_numbers[column]+1)
     row = int(row) - 1
-    print(coordinate)
+
     if coordinate in ship_coordinates:
         board[int(row)][int(letters_to_numbers[column])] = "X"
-        print(ship_coordinates)
         correct_guesses.append(coordinate)
         ship_coordinates.pop(ship_coordinates.index(coordinate))
-        print(ship_coordinates)
-        print(correct_guesses)
-        print("Hit!")
+        print("Hit!\n")
     else:
         board[int(row)][int(letters_to_numbers[column])] = "/"
-        print("Sorry, guess again!")
         turns -= 1
+        print("\n\nSorry, guess again!\n")
+        
 
 def create_ships():
     destroyer = random.randint(1, 2)
@@ -154,7 +152,7 @@ def print_board(board):
 
 create_ships()
 
-print("Hello and welcome to battleship!\n")
+print("\nHello and welcome to battleship!\n")
 print("You have " + str(turns) + " turns left\n")
 
 while turns > 0 and len(correct_guesses) < 17:
