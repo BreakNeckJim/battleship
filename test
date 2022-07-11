@@ -153,10 +153,13 @@ def print_board(board):
     for i in board:
         print(str(x) + " " + " ".join(i))
         x += 1
-create_ships()
+
 turns = 20
 print(turns)
 while turns > 0:
     print_board(board)
+    create_ships()
+    print(ship_coordinates)
     get_ship_location()
+    print_board(board)
     print(turns)
