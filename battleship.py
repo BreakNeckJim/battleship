@@ -20,6 +20,7 @@ def get_ship_location():
         column = input("Please enter a column A-J ").upper()
     coordinate = (int(row)-1)*10 + int(letters_to_numbers[column]+1)
     row = int(row) - 1
+    print("\n----------------------------")
 
     if coordinate in ship_coordinates:
         board[int(row)][int(letters_to_numbers[column])] = "X"
@@ -29,7 +30,7 @@ def get_ship_location():
     else:
         board[int(row)][int(letters_to_numbers[column])] = "/"
         turns -= 1
-        print("\n\n\nSorry, guess again!\n\n")
+        print("\nSorry, guess again!")
         
 
 def create_ships():
