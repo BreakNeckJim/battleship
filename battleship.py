@@ -6,7 +6,7 @@ ship_coordinates = []
 correct_guesses = []
 coordinate = 0
 letters_to_numbers = {"A":0, "B":1, "C":2, "D":3, "E":4, "F":5, "G":6, "H":7, "I":8, "J":9}
-turns = 20
+turns = 25
 
 def get_ship_location():
     global turns
@@ -14,10 +14,10 @@ def get_ship_location():
     while row not in "123456789 10":
         print("\nPlease enter a valid row ")
         row = input("\nPlease enter a row 1-10 ")
-    column = input("\nPlease enter a column A-J ").upper()
+    column = input("Please enter a column A-J ").upper()
     while column not in "ABCDEFGHIJ":
-        print("\nPlease enter a valid column ")
-        column = input("\nPlease enter a column A-J ").upper()
+        print("Please enter a valid column ")
+        column = input("Please enter a column A-J ").upper()
     coordinate = (int(row)-1)*10 + int(letters_to_numbers[column]+1)
     row = int(row) - 1
 
@@ -29,7 +29,7 @@ def get_ship_location():
     else:
         board[int(row)][int(letters_to_numbers[column])] = "/"
         turns -= 1
-        print("\n\nSorry, guess again!\n")
+        print("\n\n\nSorry, guess again!\n\n")
         
 
 def create_ships():
@@ -144,21 +144,22 @@ for i in range(0, 10):
     board.append(["O"] * 10)
 
 def print_board(board):
-    print("  A B C D E F G H I J")
+    print("A B C D E F G H I J")
     x = 1
     for i in board:
-        print("  " + " ".join(i) + " " + str(x))
+        print(" ".join(i) + " " + str(x))
         x += 1
 
 create_ships()
 
-print("\nHello and welcome to battleship!\n")
-print("You have " + str(turns) + " turns left\n")
+print("\nHello and Welcome to BattleShip!\n")
+print("There are 5 ships to destroy: 1 Carrier (5 long), 1 Battleship (4 long),\n1 Cruiser (3 long), 1 Submarine (3 long), and 1 Destroyer (2 long).\n")
+print("You have " + str(turns) + " turns left...\n")
 
 while turns > 0 and len(correct_guesses) < 17:
     print_board(board)
     get_ship_location()
-    print("You have " + str(turns) + " turns left\n")
+    print("You have " + str(turns) + " turns left...\n")
 
 if turns == 0:
     print("Sorry, you've run out of turns!\nThanks for playing!")
