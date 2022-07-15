@@ -35,7 +35,7 @@ def get_ship_location():
 
 def create_ships():
     destroyer = random.randint(1, 2)
-    submarine = random.randint(1, 2)
+    #submarine = random.randint(1, 2)
     cruiser = random.randint(1, 2)
     battleship = random.randint(1, 2)
     carrier = random.randint(1, 2)
@@ -44,10 +44,10 @@ def create_ships():
     else:
         get_horizontal(2)
     
-    if submarine == 1:
+    """if submarine == 1:
         get_vertical(3)
     else:
-        get_horizontal(3)
+        get_horizontal(3)"""
     
     if cruiser == 1:
         get_vertical(3)
@@ -153,11 +153,11 @@ def print_board(board):
 
 create_ships()
 
-print("\nHello and Welcome to BattleShip!\n")
-print("There are 5 ships to destroy: 1 Carrier (5 long), 1 Battleship (4 long),\n1 Cruiser (3 long), 1 Submarine (3 long), and 1 Destroyer (2 long).\n")
+print("\nHello and Welcome to BattleShip!\n--------------------------------\n")
+print("There are 4 ships to destroy: 1 Carrier (5 long),\n1 Battleship (4 long), 1 Cruiser (3 long), and \n1 Destroyer (2 long).\n")
 print("You have " + str(turns) + " turns left...\n")
 
-while turns > 0 and len(correct_guesses) < 17:
+while turns > 0 and len(correct_guesses) < 14:
     print_board(board)
     get_ship_location()
     print("You have " + str(turns) + " turns left...\n")
@@ -165,5 +165,5 @@ while turns > 0 and len(correct_guesses) < 17:
 if turns == 0:
     print("Sorry, you've run out of turns!\nThanks for playing!")
 
-if len(correct_guesses) == 17:
+if len(correct_guesses) == 14:
     print("Congratulations!!! You've sunk all the ships!\nYou win!")
